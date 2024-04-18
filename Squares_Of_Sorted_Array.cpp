@@ -1,43 +1,30 @@
 public:
     vector<int> sortedSquares(vector<int>& nums) {
-        // int temp=0;
-        for(int i=0;i<size(nums);i++){
+        int sizeOfArray=size(nums);
+        for(int i=0;i<sizeOfArray;i++){
             nums[i]=nums[i]*nums[i];
         }
-        // for(int i=0;i<size(nums);i++){
-        //     for(int j=i+1;j<size(nums);j++){
-        //         if(nums[j]<nums[i]){
-        //             temp=nums[j];
-        //             nums[j]=nums[i];
-        //             nums[i]=temp;
-        //         }
-        //     }
-        // }
-        int sizeOfArray=size(nums);
-        selSort(nums, sizeOfArray);
+        bblSort(nums, sizeOfArray);
         return nums;
+    }
+    void bubble(vector<int>& arr, int n){
+        int i=n-1;
+        while(i>0){
+            if(arr[i]<arr[i-1]){
+                swap(arr, i, i-1);
+            }
+            i--;
+        }
+    }
+    void bblSort(vector<int>& arr, int n){
+        int i=0;
+        while(i<n-1){
+            bubble(arr, n);
+            i++;
+        }
     }
     void swap(vector<int>& arr, int m, int n){
         int temp = arr[m];
         arr[m] = arr[n];
         arr[n] = temp; 
-    }
-    int locOfSmallest(vector<int>& arr, int s, int e){
-        int i=s;
-        int j=i;
-        while(i<=e){
-            if(arr[i]<arr[j]){
-                j=i;
-            }
-            i++;
-        }
-        return j;
-    }
-    void selSort(vector<int>& arr, int n){
-        int i=0;
-        while(i<n-1){
-            int j = locOfSmallest(arr, i, n-1);
-            swap(arr, i, j);
-            i++;
-        }
     }
